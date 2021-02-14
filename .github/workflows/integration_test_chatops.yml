@@ -28,6 +28,6 @@ jobs:
         if: steps.it.outputs.BOOL_TRIGGERED == 'true'
         run: echo "${USERNAME} made a triggering comment on PR# ${PR_NUMBER} for ${BRANCH_NAME}"
         env: 
-          BRANCH_NAME: ${{ steps.prcomm.outputs.BRANCH_NAME }}
-          PR_NUMBER: ${{ steps.prcomm.outputs.PULL_REQUEST_NUMBER }}
-          USERNAME: ${{ steps.prcomm.outputs.COMMENTER_USERNAME }}
+          BRANCH_NAME: ${{ steps.it.outputs.BRANCH_NAME }}
+          PR_NUMBER: ${{ steps.it.outputs.PULL_REQUEST_NUMBER }}
+          USERNAME: ${{ steps.it.outputs.COMMENTER_USERNAME }}
