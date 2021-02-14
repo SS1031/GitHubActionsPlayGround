@@ -19,15 +19,13 @@ jobs:
       - name: Checkout
         if: steps.it.outputs.BOOL_TRIGGERED == 'true'
         uses: actions/checkout@v2
+        with:
+          ref: ${{ steps.it.outputs.SHA }}
 
       - name: Hello world
         if: steps.it.outputs.BOOL_TRIGGERED == 'true'
         run: echo Hello, world!
         
-      - name: Print PR comment variables
+      - name: Check git branch
         if: steps.it.outputs.BOOL_TRIGGERED == 'true'
-        run: echo "${USERNAME} made a triggering comment on PR# ${PR_NUMBER} for ${BRANCH_NAME}"
-        env: 
-          BRANCH_NAME: ${{ steps.it.outputs.BRANCH_NAME }}
-          PR_NUMBER: ${{ steps.it.outputs.PULL_REQUEST_NUMBER }}
-          USERNAME: ${{ steps.it.outputs.COMMENTER_USERNAME }}
+        run: git branch
