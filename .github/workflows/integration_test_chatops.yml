@@ -1,27 +1,25 @@
-name: Integration Test ChatOps
+name: PoC ChatOps
 
 on: [issue_comment]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  integration-test-chatops:
-    # The type of runner that the job will run on
+  chatops:
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: listen for PR Comments
+      - name: Listen for PR Comments
         uses: machine-learning-apps/actions-chatops@master
         with:
           TRIGGER_PHRASE: "/integration-test"
-        env: # you must supply GITHUB_TOKEN
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        id: prcomm
-        
-      - name: Clone repository
-        if: steps.prcomm.outputs.BOOL_TRIGGERED == 'true'
+        id: it
+
+      - name: Checkout
+        if: steps.it.outputs.BOOL_TRIGGERED == 'true'
         uses: actions/checkout@v2
 
       - name: Hello world
-        if: steps.prcomm.outputs.BOOL_TRIGGERED == 'true'
+        if: steps.it.outputs.BOOL_TRIGGERED == 'true'
         run: echo Hello, world!
