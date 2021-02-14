@@ -25,3 +25,7 @@ jobs:
       - name: Hello world
         if: steps.prcomm.outputs.BOOL_TRIGGERED == 'true'
         run: echo Hello, world!
+
+      - name: Hello World 2
+        if: steps.prcomm.outputs.BOOL_TRIGGERED == 'true'
+        run: echo Hello, world 2!
