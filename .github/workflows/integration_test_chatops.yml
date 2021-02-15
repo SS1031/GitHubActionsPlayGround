@@ -6,7 +6,6 @@ on: [issue_comment]
 jobs:
   chatops:
     # This job only runs for pull request comments
-    name: ChatOps for Integration Test
     if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
     steps:
