@@ -26,7 +26,11 @@ jobs:
       - name: Hello world
         if: steps.it.outputs.BOOL_TRIGGERED == 'true'
         run: echo Hello, world! ${{ github.event.issue.pull_request.GITHUB_SHA }} ${{ github.event.issue.pull_request.GITHUB_REF }}
-        
+      
+      - name: Hello world
+        if: steps.it.outputs.BOOL_TRIGGERED == 'true'
+        run: echo ${{ github.event.issue.pull_request }}
+         
       - name: Check git branch
         if: steps.it.outputs.BOOL_TRIGGERED == 'true'
         run: git branch
