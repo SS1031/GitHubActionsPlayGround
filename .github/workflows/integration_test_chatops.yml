@@ -21,11 +21,11 @@ jobs:
         if: steps.it.outputs.BOOL_TRIGGERED == 'true'
         uses: actions/checkout@v2
         with:
-          ref: ${{ steps.it.outputs.SHA }}
+          ref: ${{ github.event.issue.pull_request.GITHUB_SHA }}
 
       - name: Hello world
         if: steps.it.outputs.BOOL_TRIGGERED == 'true'
-        run: echo Hello, world!
+        run: echo Hello, world! ${{ github.event.issue.pull_request.GITHUB_SHA }} ${{ github.event.issue.pull_request.GITHUB_REF }}
         
       - name: Check git branch
         if: steps.it.outputs.BOOL_TRIGGERED == 'true'
